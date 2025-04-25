@@ -1,21 +1,62 @@
 {
   "cli": {
-    "version": ">= 16.3.3",
+    "version": ">= 5.9.1",
     "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      },
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease",
+        "image": "latest",
+        "env": {
+          "ANDROID_NDK_HOME": "/opt/android-ndk"
+        },
+        "withoutCredentials": true,
+        "proguard": true
+      },
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease",
+        "resourceClass": "medium"
+      },
+      "ios": {
+        "distribution": "internal",
+        "resourceClass": "m-medium"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle",
+        "gradleCommand": ":app:bundleRelease",
+        "proguard": true
+      },
+      "ios": {
+        "distribution": "store",
+        "resourceClass": "m-medium"
+      }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Gift, ArrowLeft, ChevronRight, ShoppingBag, Ticket } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
+import RedeemPointsModal from '../components/RedeemPointsModal';
 
 export default function LoyaltyScreen() {
   const router = useRouter();
+  const [isRedeemModalVisible, setIsRedeemModalVisible] = useState(false);
   
   // Mock data - In a real app, this would come from an API
   const pointsData = {
@@ -63,7 +65,10 @@ export default function LoyaltyScreen() {
 
         {/* Quick Actions */}
         <View style={styles.actionsContainer}>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity 
+            style={styles.actionButton}
+            onPress={() => setIsRedeemModalVisible(true)}
+          >
             <ShoppingBag size={24} color="#0A2463" />
             <Text style={styles.actionText}>Redeem Points</Text>
             <ChevronRight size={20} color="#999" />
@@ -96,6 +101,12 @@ export default function LoyaltyScreen() {
           ))}
         </View>
       </ScrollView>
+
+      <RedeemPointsModal
+        visible={isRedeemModalVisible}
+        onClose={() => setIsRedeemModalVisible(false)}
+        availablePoints={pointsData.totalPoints}
+      />
     </SafeAreaView>
   );
 }
