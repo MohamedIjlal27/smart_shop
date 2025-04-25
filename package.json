@@ -22,8 +22,8 @@
     "@expo-google-fonts/poppins": "^0.3.1",
     "@expo/vector-icons": "^14.0.2",
     "@lucide/lab": "^0.1.2",
-    "@react-navigation/bottom-tabs": "^7.3.10",
-    "@react-navigation/native": "^7.1.6",
+    "@react-navigation/bottom-tabs": "^7.2.0",
+    "@react-navigation/native": "^7.0.14",
     "expo": "~52.0.46",
     "expo-barcode-scanner": "^13.0.1",
     "expo-blur": "~14.0.3",
@@ -64,5 +64,12 @@
     "sharp": "^0.33.2",
     "typescript": "^5.8.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": ["expo-barcode-scanner", "@lucide/lab"]
+      }
+    }
+  }
 }
