@@ -1,43 +1,76 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from 'expo-router';
+import { View, Text, StyleSheet, Platform } from 'react-native';
+import { Chrome as Home, Search, ShoppingCart, User, Bell } from 'lucide-react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+        tabBarActiveTintColor: '#0A2463',
+        tabBarInactiveTintColor: '#999',
+        tabBarStyle: {
+          height: Platform.OS === 'ios' ? 85 : 60,
+          paddingBottom: Platform.OS === 'ios' ? 25 : 8,
+          paddingTop: 8,
+          backgroundColor: '#fff',
+          borderTopWidth: 1,
+          borderTopColor: '#f0f0f0',
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: -2,
           },
-          default: {},
-        }),
-      }}>
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Poppins-Medium',
+          fontSize: 12,
+          marginTop: -5,
+        },
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="search"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Search',
+          tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: 'Cart',
+          tabBarIcon: ({ color, size }) => <ShoppingCart color={color} size={size} />,
+          tabBarBadge: 3, // Example badge, would be dynamic in real app
+          tabBarBadgeStyle: {
+            backgroundColor: '#FF6B6B',
+            fontFamily: 'Poppins-Medium',
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="notifications"
+        options={{
+          title: 'Alerts',
+          tabBarIcon: ({ color, size }) => <Bell color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
         }}
       />
     </Tabs>
