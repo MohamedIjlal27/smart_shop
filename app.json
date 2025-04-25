@@ -34,7 +34,11 @@
       "package": "com.smartshop.app",
       "enableProguardInReleaseBuilds": true,
       "enableShrinkResources": true,
-      "permissions": ["CAMERA"]
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -52,6 +56,11 @@
       "tsconfigPaths": true
     },
     "newArchEnabled": true,
-    "jsEngine": "hermes"
+    "jsEngine": "hermes",
+    "extra": {
+      "eas": {
+        "projectId": "3baddc90-f9c4-4c96-bd8f-227dcae8ea4d"
+      }
+    }
   }
 }

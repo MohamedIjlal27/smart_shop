@@ -25,8 +25,7 @@
         "env": {
           "ANDROID_NDK_HOME": "/opt/android-ndk"
         },
-        "withoutCredentials": true,
-        "proguard": true
+        "withoutCredentials": true
       },
       "ios": {
         "simulator": true,
@@ -50,8 +49,7 @@
       "autoIncrement": true,
       "android": {
         "buildType": "app-bundle",
-        "gradleCommand": ":app:bundleRelease",
-        "proguard": true
+        "gradleCommand": ":app:bundleRelease"
       },
       "ios": {
         "distribution": "store",
